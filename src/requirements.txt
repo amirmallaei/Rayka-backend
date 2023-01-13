@@ -1,0 +1,6 @@
+cffi==1.14.2
+Django==3.2
+djangorestframework==3.11.0
+boto3==1.26.49
+gunicorn
+gevent

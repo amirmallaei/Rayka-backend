@@ -1,0 +1,25 @@
+version: "3"
+# Maintainer Amir Mallaei @ Gmail .com
+services:
+  app:
+    build: .
+    image: rayka
+    container_name: rayka_app
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./src:/src
+    command: bash Deployment/bashes/createDB.sh
+    
+    networks:
+      rayka_app_net:
+        ipv4_address: 102.29.100.1
+
+
+networks:
+    rayka_app_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 102.29.100.0/16
