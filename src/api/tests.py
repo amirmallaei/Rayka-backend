@@ -12,7 +12,7 @@ class AddDevice(TestCase):
         self.client = APIClient()
 
     def test_add_device(self):
-        """test if adding new device will work"""
+        """test if adding new device will work properly"""
         payload = {
             'id': 'test',
             'deviceModel': 'testDevice',
@@ -24,7 +24,7 @@ class AddDevice(TestCase):
         self.assertEqual(res.status_code,status.HTTP_201_CREATED)
 
     def test_add_device_fails(self):
-        """test if adding new device will work"""
+        """test if adding new device fails if payloads are missing"""
         payload = {
             'id': 'test',
             'deviceModel': 'testDevice',
