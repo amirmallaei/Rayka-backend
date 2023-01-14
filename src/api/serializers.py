@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 
 class DeviceSerializer(serializers.Serializer):
+    """Serializer for Creating Devices"""
     id = serializers.CharField()
     deviceModel = serializers.CharField()
     name = serializers.CharField()
@@ -13,6 +14,7 @@ class DeviceSerializer(serializers.Serializer):
 
 
 class DeviceDeserializer(serializers.Serializer):
+    """Serializer for Deserializing Searched Device"""
     id = serializers.SerializerMethodField()
     deviceModel = serializers.SerializerMethodField()
     name = serializers.SerializerMethodField()

@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
@@ -8,6 +7,7 @@ from RaykaDB import put_device, get_device
 
 # Create your views here.
 class DeviceCreateAPIView(APIView):
+    """API View for creating a Device."""
     serializer_class = DeviceSerializer
 
     def post(self, request, format=None):
@@ -24,13 +24,11 @@ class DeviceCreateAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class DeviceRetrieveAPIView(generics.RetrieveAPIView):
+    """API View to Retrieve a Device"""
     serializer_class = DeviceDeserializer
 
     def get_object(self):
         obj = get_device(self.kwargs['order_id'])
-        print(obj)
         if obj is not None:
             return obj
-        return Response("Not Found", status=status.HTTP_404_NOT_FOUND)

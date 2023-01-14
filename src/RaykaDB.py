@@ -1,7 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
 from rayka.local_settings import ACCESS_KEY, SECRET_KEY
-import time
 from django.http import Http404
 
 #Connect to AWS account
@@ -13,14 +12,15 @@ client = boto3.client(
     )
 
 
-#Create DynamoDB table
+
 def create_device_table():
+    """Helper Function that Creates A Table on AWS account"""
     table = client.create_table(
         TableName='RaykaDevices',
         KeySchema=[
             {
                 'AttributeName': 'id',
-                'KeyType': 'HASH'  # Partition key
+                'KeyType': 'HASH'
             }
         ],
         AttributeDefinitions=[
@@ -38,8 +38,9 @@ def create_device_table():
     )
     return table
 
-##Create record in a DynamoDB table
+
 def put_device(id, deviceModel, name, note, serial):
+    """Helper Function to Create a Device On AWS account."""
     print("Creating New Record in DynamoDB")
     response = client.put_item(
        TableName='RaykaDevices',
@@ -61,11 +62,11 @@ def put_device(id, deviceModel, name, note, serial):
             }
         }
     )
-    # print(response)
     return response
 
-##Get a record in from DynamoDB table
+
 def get_device(id):
+    """Helper Function to get a device from the AWS account."""
     try:
         response = client.get_item(       
                 TableName='RaykaDevices',
@@ -84,7 +85,6 @@ def get_device(id):
         raise Http404
 
 if __name__ == '__main__':
-    # Create DynamoDB
     device_table = create_device_table()
     print("Create DynamoDB succeeded............")
     print("Table status:{}".format(device_table))
