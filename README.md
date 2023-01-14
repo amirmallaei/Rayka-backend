@@ -1,5 +1,7 @@
 <!-- Rayka Backend API -->
-Run the command below  in the Terminal based on your OS to build the docker container.
+1- Add your "local_settings.py" file to /src/rayka/ containing AWS credentials.
+
+2- Run the command below  in the Terminal based on your OS to build the docker container.
 
 Linux and macOS:
     "docker compose up --build"
